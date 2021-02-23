@@ -47,18 +47,31 @@
                 <fieldset class="p-2">
                     <label for="imdb" class="col-2">IMDB:</label>
                     <input name="imdb" id="imdb" required type="real" min="1" max="10" />
-                    <!--IMDB drop down list-->
-<!--                    <select>-->
-<!--                        --><?php
-//                        $selected_imdb = 1;
-//                        for ( $i=0; $i<=10 ; $i+=0.1)
-//                            print '<option value="'.$i.'"'.($i === $selected_imdb ? ' selected="selected"' : '').'>'.$i.'</option>';
-//                        ?>
-<!--                    </select>-->
                 </fieldset>
+
+                <!--director from other database with a drop down list-->
                 <fieldset class="p-2">
                     <label for="director" class="col-2">Director:</label>
-                    <input name="director" id="director" />
+                    <select name="directorId" id="directorId">
+                        <?php
+                        // connect
+                        $db = new PDO('mysql:host=172.31.22.43;dbname=Nafiseh200470752', 'Nafiseh200470752', 'bDjeeJHyam');
+
+                        // set up & run query to get all publishers
+                        $sql = "SELECT * FROM directors ORDER BY directorName";
+                        $cmd = $db->prepare($sql);
+                        $cmd->execute();
+                        $directorName = $cmd->fetchAll();
+
+                        // add each publisher to the list
+                        foreach ($directorName as $d) {
+                            echo '<option value="' . $d['publisherId'] . '">' . $p['name'] . '</option>';
+                        }
+
+                        // disconnect
+                        $db = null;
+                        ?>
+                    </select>
                 </fieldset>
 
                 <!--save button-->
