@@ -5,6 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Saving Director...</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     </head>
 
     <!--body-->
