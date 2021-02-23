@@ -21,7 +21,7 @@
 
             //inputs' validation for saving data
             if (empty(trim($directorName))) {
-                echo 'Name is required<br />';
+                echo 'Director is required<br />';
                 $canSave = false;
             }
 

@@ -51,14 +51,14 @@
 
                 <!--director from other database with a drop down list-->
                 <fieldset class="p-2">
-                    <label for="directorName" class="col-2">Director:</label>
+                    <label for="directorId" class="col-2">Director:</label>
                     <select name="directorId" id="directorId">
 
                         <?php
                             //Connect to AWS db
                             $db = new PDO('mysql:host=172.31.22.43;dbname=Nafiseh200470752', 'Nafiseh200470752', 'bDjeeJHyam');
 
-                            //read the table
+                            //read the table in order by names
                             $sql = "SELECT * FROM directors ORDER BY directorName";
 
                             //run sql query
@@ -68,10 +68,10 @@
                             $cmd->execute();
 
                             //store data in $directors.
-                            $directorName = $cmd->fetchAll();
+                            $directors = $cmd->fetchAll();
 
                             //add directors to the list
-                            foreach ($directorName as $d) {
+                            foreach ($directors as $d) {
                                 echo '<option value="' . $d['directorId'] . '">' . $d['directorName'] . '</option>';
                             }
 
