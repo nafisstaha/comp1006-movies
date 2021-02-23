@@ -44,6 +44,7 @@
                 $canSave = false;
             }
 
+            //add data to database after validation
             if ($canSave == true) {
 
                 //connect to AWS db
