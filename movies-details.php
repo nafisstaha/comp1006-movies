@@ -51,25 +51,32 @@
 
                 <!--director from other database with a drop down list-->
                 <fieldset class="p-2">
-                    <label for="director" class="col-2">Director:</label>
+                    <label for="directorName" class="col-2">Director:</label>
                     <select name="directorId" id="directorId">
+
                         <?php
-                        // connect
-                        $db = new PDO('mysql:host=172.31.22.43;dbname=Nafiseh200470752', 'Nafiseh200470752', 'bDjeeJHyam');
+                            //Connect to AWS db
+                            $db = new PDO('mysql:host=172.31.22.43;dbname=Nafiseh200470752', 'Nafiseh200470752', 'bDjeeJHyam');
 
-                        // set up & run query to get all publishers
-                        $sql = "SELECT * FROM directors ORDER BY directorName";
-                        $cmd = $db->prepare($sql);
-                        $cmd->execute();
-                        $directorName = $cmd->fetchAll();
+                            //read the table
+                            $sql = "SELECT * FROM directors ORDER BY directorName";
 
-                        // add each publisher to the list
-                        foreach ($directorName as $d) {
-                            echo '<option value="' . $d['publisherId'] . '">' . $p['name'] . '</option>';
-                        }
+                            //run sql query
+                            $cmd = $db->prepare($sql);
 
-                        // disconnect
-                        $db = null;
+                            //execute
+                            $cmd->execute();
+
+                            //store data in $directors.
+                            $directorName = $cmd->fetchAll();
+
+                            //add directors to the list
+                            foreach ($directorName as $d) {
+                                echo '<option value="' . $d['directorId'] . '">' . $d['directorName'] . '</option>';
+                            }
+
+                            //disconnect db
+                            $db = null;
                         ?>
                     </select>
                 </fieldset>

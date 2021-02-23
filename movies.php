@@ -17,11 +17,13 @@
             //Connect to AWS db
             $db = new PDO('mysql:host=172.31.22.43;dbname=Nafiseh200470752', 'Nafiseh200470752', 'bDjeeJHyam');
 
-            //read the records from table with SQL Query
+            //read the table
             $sql = "select * from movies";
 
-            //run the SQL Query
+            //run sql query
             $cmd = $db->prepare($sql);
+
+            //execute
             $cmd->execute();
 
             //store data in $movies.
@@ -35,7 +37,7 @@
                           <td>' . $i['movieName'] . '</td>
                           <td>' . $i['releaseYear'] . '</td>
                           <td>' . $i['imdb'] . '</td>
-                          <td>' . $i['director'] . '</td>
+                          <td>' . $i['directorName'] . '</td>
                       </tr>';
             }
             

@@ -4,7 +4,7 @@
     <!--head-->
     <head>
         <meta charset="UTF-8">
-        <title>Publisher Details</title>
+        <title>Director Details</title>
     </head>
 
     <!--body-->

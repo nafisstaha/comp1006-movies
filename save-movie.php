@@ -16,13 +16,12 @@
             $movieName = $_POST['movieName'];
             $releaseYear = $_POST['releaseYear'];
             $imdb = $_POST['imdb'];
-            $director = $_POST['director'];
+            $directorName = $_POST['directorName'];
 
             //a variable for checking the input validation
             $canSave = true;
 
             //inputs' validation for saving data
-
             if (empty(trim($movieName))) {
                 echo 'Name is required<br />';
                 $canSave = false;
@@ -40,7 +39,7 @@
                 $canSave = false;
             }
 
-            if (empty(trim($director))) {
+            if (empty(trim($directorName))) {
                 echo 'Director is required<br />';
                 $canSave = false;
             }
@@ -51,14 +50,14 @@
                 $db = new PDO('mysql:host=172.31.22.43;dbname=Nafiseh200470752', 'Nafiseh200470752', 'bDjeeJHyam');
 
                 //set up sql insert command
-                $sql = "INSERT INTO movies (movieName, releaseYear, imdb, director) VALUES (:movieName, :releaseYear, :imdb, :director)";
+                $sql = "INSERT INTO movies (movieName, releaseYear, imdb, directorName) VALUES (:movieName, :releaseYear, :imdb, :directorName)";
 
                 //fill insert parameters with new variables
                 $cmd = $db->prepare($sql);
                 $cmd->bindParam(':movieName', $movieName, PDO::PARAM_STR, 100);
                 $cmd->bindParam(':releaseYear', $releaseYear, PDO::PARAM_INT);
                 $cmd->bindParam(':imdb', $imdb, PDO::PARAM_STR, 10);
-                $cmd->bindParam(':director', $director, PDO::PARAM_INT, 50);
+                $cmd->bindParam(':directorName', $directorName, PDO::PARAM_INT, 50);
 
                 //execute
                 $cmd->execute();
