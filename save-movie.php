@@ -9,8 +9,8 @@
             // store the values entered in the form in variables
             $name = $_POST['name'];
             $releaseYear = $_POST['releaseYear'];
-            $rating = $_POST['imdb'];
-            $publisherId = $_POST['director'];
+            $imdb = $_POST['imdb'];
+            $director = $_POST['director'];
             // add variable to indicate if we should save or not
             $ok = true;
 
@@ -20,12 +20,17 @@
                 $ok = false;
             }
 
-            if (empty($releaseYear)) {
+            if ($releaseYear['value'] === '') {
                 echo 'Release Year is required<br />';
                 $ok = false;
             }
 
-            if (empty($director)) {
+            if ($imdb < 1 || $imdb >10) {
+                echo 'IMDB is incorrect<br />';
+                $ok = false;
+            }
+
+            if (empty(trim($director))) {
                 echo 'Director is required<br />';
                 $ok = false;
             }

@@ -17,12 +17,17 @@
 
             <!--form-->
             <form method="post" action="save-movie.php">
+
+                <!--name-->
                 <fieldset class="p-2">
                     <label for="name" class="col-2">Name: </label>
                     <input name="name" id="name" required maxlength="100" />
                 </fieldset>
+
+                <!--release year-->
                 <fieldset class="p-2">
                     <label for="releaseYear" class="col-2">Release year:</label>
+
                     <!--year dropdown list from 1980 to 2021-->
                     <select>
                         <?php
@@ -35,7 +40,10 @@
                             }
                         ?>
                     </select>
+
                 </fieldset>
+
+                <!--IMDB-->
                 <fieldset class="p-2">
                     <label for="imdb" class="col-2">IMDB:</label>
                     <input name="imdb" id="imdb" required type="real" min="1" max="10" />
