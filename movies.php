@@ -18,7 +18,7 @@
             $db = new PDO('mysql:host=172.31.22.43;dbname=Nafiseh200470752', 'Nafiseh200470752', 'bDjeeJHyam');
 
             //read the table
-            $sql = "select * from movies";
+            $sql = "select * from movies order by imdb desc";
 
             //run sql query
             $cmd = $db->prepare($sql);
@@ -40,13 +40,13 @@
                           <td>' . $i['directorName'] . '</td>
                       </tr>';
             }
-            
+
             echo '</table>';
-            
+
             //disconnect db
             $db = null;
         ?>
-    
+
     </body>
 
 </html>
