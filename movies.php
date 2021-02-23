@@ -17,7 +17,7 @@
             //Connect to AWS db
             $db = new PDO('mysql:host=172.31.22.43;dbname=Nafiseh200470752', 'Nafiseh200470752', 'bDjeeJHyam');
 
-            //read the table
+            //read the table in order by imdb
             $sql = "select * from movies order by imdb desc";
 
             //run sql query
