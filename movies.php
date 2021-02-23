@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
+    <!--head-->
     <head>
 
         <meta charset="UTF-8">
         <title>movies</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-
     </head>
 
+    <!--body-->
     <body>
 
         <?php
@@ -24,7 +24,7 @@
             $cmd = $db->prepare($sql);
             $cmd->execute();
 
-            //store data in $relatives.
+            //store data in $movies.
             $movies = $cmd->fetchAll();
 
             //table
@@ -32,7 +32,7 @@
 
             foreach ($movies as $i) {
                 echo '<tr>
-                          <td>' . $i['name'] . '</td>
+                          <td>' . $i['movieName'] . '</td>
                           <td>' . $i['releaseYear'] . '</td>
                           <td>' . $i['imdb'] . '</td>
                           <td>' . $i['director'] . '</td>

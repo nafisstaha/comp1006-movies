@@ -18,10 +18,10 @@
             <!--form-->
             <form method="post" action="save-movie.php">
 
-                <!--name-->
+                <!--Movie name-->
                 <fieldset class="p-2">
-                    <label for="name" class="col-2">Name: </label>
-                    <input name="name" id="name" required maxlength="100" />
+                    <label for="movieName" class="col-2">Name: </label>
+                    <input name="movieName" id="movieName" required maxlength="100" />
                 </fieldset>
 
                 <!--release year-->
