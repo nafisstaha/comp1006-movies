@@ -5,7 +5,7 @@
     $password = $_POST['password'];
 
     //connect to db
-    include 'db.php';
+    include 'database.php';
     $sql = "SELECT * FROM users WHERE username = :username";
 
     //fill insert parameters with new variables
@@ -23,15 +23,15 @@
         if (password_verify($password, $user['password'])) {
 
             //valid
-            session_start(); // accesses the current session
-            $_SESSION['username'] = $username; // store identity in a session variable
-            header('location:games.php');
+            session_start();
+            $_SESSION['username'] = $username;
+            header('location:movies.php');
 
         //invalid, redirect to login page
         } else {
             header('location:login.php?invalid=true');
         }
-        
+
     //redirect to login page
     } else {
         header('location:login.php?invalid=true');

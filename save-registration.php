@@ -35,7 +35,7 @@
     if ($canSave) {
 
         // connect
-        include 'db.php';
+        include 'database.php';
 
         //set up sql insert command
         $sql = "SELECT * FROM users WHERE username = :username";
