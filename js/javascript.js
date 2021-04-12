@@ -1,9 +1,9 @@
 //delete confirmation
-function yaSure() {
+function ok() {
     return confirm('Do you want to delete this?');
 }
 
-//comparing password
+//comparing passwords
 function comparePass() {
 
     var p1 = document.getElementById('password').value;

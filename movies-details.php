@@ -46,7 +46,7 @@
                 <!--IMDB-->
                 <fieldset class="p-2">
                     <label for="imdb" class="col-2">IMDB:</label>
-                    <input name="imdb" id="imdb" required type="real" min="1" max="10" />
+                    <input name="imdb" id="imdb" required type="real" min="1" max="10" placeholder="between 0 to 10"/>
                 </fieldset>
 
                 <!--director from other database with a drop down list-->
