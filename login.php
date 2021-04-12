@@ -17,7 +17,7 @@
     ?>
 
     <!--login form-->
-    <form method="post" action="validate.php">
+    <form method="post" action="validation.php">
 
         <!--username-->
         <fieldset class="form-group">
