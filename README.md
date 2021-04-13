@@ -2,7 +2,7 @@
 <p>My application gets information of movies. It gets Name, Year of release, IMDB rate, Director's name and image.</p>
 <ul>
     <li>name is the name of the movie</li>
-    <li>releaseYear is the year with a drop down list between 1980 and 2021</li>
+    <li>releaseYear is the year between 1980 and 2021</li>
     <li>IMDB is rate of the movie between 1 and 10</li>
     <li>directorName is the name of the director that has a separate database and page</li>
     <li>image is the image of the movie</li>
