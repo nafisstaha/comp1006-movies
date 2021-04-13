@@ -3,21 +3,21 @@
     include 'header.php';
 ?>
 
-<main class="container">
+<main style="padding: 10px; margin: 10px;">
 
-    <h1>Login</h1>
+    <h1 style="color: #fd7e14">Login</h1>
 
     <!--login validation-->
     <?php
         if (!empty($_GET['invalid'])) {
-            echo '<h5 class="alert alert-danger">Invalid Login</h5>';
+            echo '<h5 class="alert alert-danger w-50">Invalid Login</h5>';
         } else {
-            echo '<h5 class="alert alert-info">Please enter your credentials</h5>';
+            echo '<h5 class="alert alert-info w-50">Please enter your credentials</h5>';
         }
     ?>
 
     <!--login form-->
-    <form method="post" action="validation.php">
+    <form method="post" action="validation.php" class="container w-50 align-baseline" style="padding: 10px; margin: 10px;">
 
         <!--username-->
         <fieldset class="form-group">
@@ -33,7 +33,7 @@
 
         <!--login button-->
         <div class="offset-3">
-            <button class="btn btn-primary">Login</button>
+            <button class="btn btn-info">Login</button>
         </div>
 
     </form>

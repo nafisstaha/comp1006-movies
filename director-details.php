@@ -13,7 +13,7 @@
 
         <main class="container">
 
-            <h1>Directors Details</h1>
+            <h1>Director Details</h1>
 
             <!--form-->
             <form method="post" action="save-director.php">

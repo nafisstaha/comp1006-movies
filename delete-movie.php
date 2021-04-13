@@ -9,6 +9,8 @@
     <body>
         <?php
 
+        include 'authentication.php';
+
         //get the selected movieId from URL
         $movieId = $_GET['movieId'];
 

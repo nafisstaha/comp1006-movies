@@ -3,15 +3,15 @@
     include 'header.php';
 ?>
 
-<main class="container">
+<main  class="w-50" style="padding: 10px; margin: 10px;">
 
-    <h1>Registration</h1>
+    <h1 style="color: #fd7e14">Registration</h1>
 
     <!--password rules-->
-    <h5 class="alert alert-info">Password Rules: min 8 characters, 1 digit, 1 upper, 1 lowercase letter</h5>
+    <p>Password Rules: min 8 characters, 1 digit, 1 upper, 1 lowercase letter</p>
 
     <!--registration form-->
-    <form method="post" action="save-registration.php">
+    <form method="post" action="save-registration.php" class="container align-baseline" style="padding: 10px; margin: 10px;">
 
         <!--username-->
         <fieldset class="form-group">
@@ -37,7 +37,7 @@
 
         <!--comparing password and register button-->
         <div class="offset-3">
-            <button class="btn btn-primary" onclick="return comparePass();">Register</button>
+            <button class="btn btn-info" onclick="return comparePass();">Register</button>
         </div>
 
     </form>

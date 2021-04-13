@@ -13,11 +13,14 @@
 
         <?php
 
+            include 'authentication.php';
+
             //store entered form's values
             $movieName = $_POST['movieName'];
             $releaseYear = $_POST['releaseYear'];
             $imdb = $_POST['imdb'];
             $directorId = $_POST['directorId'];
+            $movieId = $_POST['movieId'];
 
             //a variable for checking the input validation
             $canSave = true;
@@ -37,7 +40,7 @@
             }
 
             //checking validation for imdb to be between 1 and 10 and being numeric
-            if ($imdb < 1 || $imdb >10) {
+            if ($imdb<1 || $imdb>10) {
                 echo 'IMDB is incorrect<br />';
                 $canSave = false;
             }
@@ -60,29 +63,82 @@
                 }
             }
 
+            //upload the image
+            $image = null;
+
+            if ($_FILES['image']['name'] != null) {
+                $image = $_FILES['image']['name'];
+
+                $tmp_name = $_FILES['image']['tmp_name'];
+
+                $type = mime_content_type($tmp_name);
+
+                if ($type != "image/png" && $type != "image/jpeg") {
+                    echo 'Please upload a .jpg or .png file<br />';
+                    $canSave = false;
+
+                } else {
+                    $image = session_id() . "-" . $image;
+                    move_uploaded_file($tmp_name, "images/$image");
+                }
+
+            } else {
+                $image = $_POST['currentImage'];
+            }
+
             //add data to database after validation
             if ($canSave == true) {
 
-                //connect to AWS db
-                include 'database.php';
+                try {
 
-                //set up sql insert command
-                $sql = "INSERT INTO movies (movieName, releaseYear, imdb, directorId) VALUES (:movieName, :releaseYear, :imdb, :directorId)";
+                    //connect to AWS db
+                    include 'database.php';
 
-                //fill insert parameters with new variables
-                $cmd = $db->prepare($sql);
-                $cmd->bindParam(':movieName', $movieName, PDO::PARAM_STR, 100);
-                $cmd->bindParam(':releaseYear', $releaseYear, PDO::PARAM_INT);
-                $cmd->bindParam(':imdb', $imdb, PDO::PARAM_STR, 10);
-                $cmd->bindParam(':directorId', $directorId, PDO::PARAM_INT, 50);
+                    //update the table with new data
+                    if (!empty($movieId)) {
 
-                //execute
-                $cmd->execute();
+                        $sql = "UPDATE movies SET movieName = :movieName,
+                                releaseYear = :releaseYear,
+                                imdb = :imdb, directorId = :directorId,
+                                image = :image WHERE movieId = :movieId";
 
-                //disconnect db
-                $db = null;
+                    } else {
 
-                echo "Movie Saved";
+                        //set up sql insert command if doesn't exist
+                        $sql = "INSERT INTO movies (movieName, releaseYear, imdb, directorId, image)
+                                    VALUES (:movieName, :releaseYear, :imdb, :directorId, :image)";
+                    }
+
+
+                    //fill insert parameters with new variables
+                    $cmd = $db->prepare($sql);
+                    $cmd->bindParam(':movieName', $movieName, PDO::PARAM_STR, 100);
+                    $cmd->bindParam(':releaseYear', $releaseYear, PDO::PARAM_INT);
+                    $cmd->bindParam(':imdb', $imdb, PDO::PARAM_STR, 10);
+                    $cmd->bindParam(':directorId', $directorId, PDO::PARAM_INT, 50);
+                    $cmd->bindParam(':image', $image, PDO::PARAM_STR, 100);
+                    if (!empty($movieId)) {
+                        $cmd->bindParam(':movieId', $movieId, PDO::PARAM_INT);
+                    }
+
+                    //execute
+                    $cmd->execute();
+
+                    //disconnect db
+                    $db = null;
+
+                    echo "Movie Saved";
+
+                    //redirect to movies page
+                    header('location:movies.php');
+                }
+
+                catch (exception $e) {
+                    //redirect to error page
+                    header('location:error.php');
+                    exit();
+                }
+
             }
         ?>
 

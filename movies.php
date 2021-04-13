@@ -3,14 +3,18 @@
     include 'header.php';
 ?>
 
-<h1>The Movies</h1>
+<h1 class="text-center" style="padding: 10px; color: #fd7e14">The Movies</h1>
+
+<div class="text-center" style="padding-bottom: 20px;">
+    <?php
+        //access check, add new movie if the user is logged in
+        if (!empty($_SESSION['username'])) {
+            echo '<a href="movies-details.php" class="btn btn-outline-info btn-sm mx-auto">New Movie</a>';
+        }
+    ?>
+</div>
 
 <?php
-
-    //access check, add new movie if the user is logged in
-//    if (!empty($_SESSION['username'])) {
-//        echo '<a href="movies-details.php">New Movie</a>';
-//    }
 
     try {
 
@@ -18,8 +22,6 @@
         include 'database.php';
         //read the table in order by imdb
         $sql = "select * from movies order by imdb desc";
-//        $sql = "SELECT movies.*, directors.directorName FROM movies
-//                INNER JOIN directors ON movies.directorId = directors.directorId";
 
         //run sql query
         $cmd = $db->prepare($sql);
@@ -31,15 +33,16 @@
         $movies = $cmd->fetchAll();
 
         //table
-        echo '<table class="table table-striped table-hover">
-            <thead>
+        echo '<table class="table table-hover bg-light table-responsive w-75 border border-secondary align-baseline mx-auto" >
+            <thead class="thead-dark">
                 <th>Name</th>
                 <th></th>
                 <th>Release Year</th>
-                <th>IMDB score</th>
+                <th>IMDB rating</th>
                 <th>Director</th>
                 <th></th>
             </thead>';
+
 
         //loop for the values in $movies variable. echo is for displaying the title of each movie.
         foreach ($movies as $i) {
@@ -67,10 +70,10 @@
                    <td>' . $i['imdb'] . '</td>
                    <td>' . $i['directorName'] . '</td>
                    <td>';
-//            if (!empty($_SESSION['username'])) {
-//                echo '<a href="delete-movie.php?movieId=' . $i['movieId'] . '"
-//                   class="btn btn-danger" onclick="return ok();">Delete</a>';
-//            }
+            if (!empty($_SESSION['username'])) {
+                echo '<a href="delete-movie.php?movieId=' . $i['movieId'] . '"
+                   class="btn btn-outline-danger" onclick="return ok();">Delete</a>';
+            }
             echo '</td></tr>';
         }
 
@@ -83,6 +86,8 @@
         //redirect to error page
         header('location:error.php');
     }
+
+
 ?>
 
 </body>

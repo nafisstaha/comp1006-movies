@@ -12,14 +12,14 @@
     </head>
 
     <!--body-->
-    <body>
+    <body class="bg-light">
 
     <!--navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffe696;">
 
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="index.php">Movies</a>
+            <a class="navbar-brand" style="padding: 20px; color: #fd7e14; font-weight: bold" href="index.php">Movies</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,11 +29,11 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="movies.php">The Movies</a>
+                        <a class="nav-link" aria-current="page" href="movies.php">The Movies list</a>
                     </li>
                 </ul>
 
-                <ul class="navbar-nav ms-auto">
+                <ul class="nav nav-item">
 
                     <?php
                     // access current session 1st
